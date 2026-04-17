@@ -8,6 +8,7 @@ import { SharedHeader } from "@/components/shared-header";
 import { Preloaded } from "convex/react";
 import { buildTrackedAppUrl, slugify } from "@/lib/utils";
 import { useMemo } from "react";
+import { AppLogo } from "@/components/app-logo";
 
 interface AppProfileContentProps {
   appName: string;
@@ -96,10 +97,16 @@ export default function AppProfileContent({ appName, preloadedApp }: AppProfileC
         {/* Hero */}
         <div className="flex items-start justify-between gap-6 mb-8">
           <div className="flex items-center gap-5">
-            <img
+            <AppLogo
               src={app.image}
+              appUrl={app.url}
               alt={app.name}
               className="w-20 h-20 rounded-2xl object-cover shadow-sm shrink-0"
+              fallback={
+                <div className="w-20 h-20 rounded-2xl bg-gray-100 shadow-sm shrink-0 flex items-center justify-center text-3xl font-bold text-gray-400">
+                  {app.name[0]}
+                </div>
+              }
             />
             <div>
               <h1 className="font-display text-3xl uppercase tracking-wide text-gray-900 mb-1">{app.name}</h1>
@@ -175,10 +182,16 @@ export default function AppProfileContent({ appName, preloadedApp }: AppProfileC
                   {/* Orange accent bar */}
                   <div className="h-1 w-full bg-[#ea590e] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
                   <div className="p-4 flex flex-col flex-1">
-                    <img
+                    <AppLogo
                       src={suggested.image}
+                      appUrl={suggested.url}
                       alt={suggested.name}
                       className="w-12 h-12 rounded-xl object-cover mb-3 group-hover:scale-110 transition-transform duration-200"
+                      fallback={
+                        <div className="w-12 h-12 rounded-xl bg-gray-100 mb-3 flex items-center justify-center text-lg font-bold text-gray-400 group-hover:scale-110 transition-transform duration-200">
+                          {suggested.name[0]}
+                        </div>
+                      }
                     />
                     <p className="font-display text-base uppercase tracking-wide text-gray-900 mb-1">
                       {suggested.name}

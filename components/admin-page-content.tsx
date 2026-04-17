@@ -12,6 +12,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { useAdminAuth } from "@/components/admin-password-gate"
+import { AppLogo } from "@/components/app-logo"
 import {
   Search, Plus, Pencil, Trash2, Eye, EyeOff, Star, Check, X, Loader2, ExternalLink, RotateCcw, LogOut, ChevronUp, ChevronDown, GripVertical, Upload, ImageIcon
 } from "lucide-react";
@@ -492,10 +493,13 @@ function AppsTab() {
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-100 shrink-0">
-                        {app.image
-                          ? <img src={app.image} alt={app.name} className="w-full h-full object-cover" />
-                          : <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>
-                        }
+                        <AppLogo
+                          src={app.image}
+                          appUrl={app.url}
+                          alt={app.name}
+                          className="w-full h-full object-cover"
+                          fallback={<div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>}
+                        />
                       </div>
                       <div>
                         <div className="font-medium text-gray-900">{app.name}</div>
@@ -589,10 +593,13 @@ function SubmissionCard({
   return (
     <div className="flex items-start gap-4 p-4 border border-gray-100 rounded-xl bg-white hover:bg-gray-50 transition-colors">
       <div className="w-10 h-10 rounded-xl overflow-hidden bg-gray-100 shrink-0 mt-0.5">
-        {app.image
-          ? <img src={app.image} alt={app.name} className="w-full h-full object-cover" />
-          : <div className="w-full h-full flex items-center justify-center text-gray-400 font-bold text-sm">{app.name[0]}</div>
-        }
+        <AppLogo
+          src={app.image}
+          appUrl={app.url}
+          alt={app.name}
+          className="w-full h-full object-cover"
+          fallback={<div className="w-full h-full flex items-center justify-center text-gray-400 font-bold text-sm">{app.name[0]}</div>}
+        />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-3">
@@ -804,10 +811,13 @@ function FeaturedTab() {
               <GripVertical className="w-4 h-4 text-gray-300 shrink-0" />
               <span className="w-6 text-center text-xs font-bold text-gray-400">{i + 1}</span>
               <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-100 shrink-0">
-                {app.image
-                  ? <img src={app.image} alt={app.name} className="w-full h-full object-cover" />
-                  : <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>
-                }
+                <AppLogo
+                  src={app.image}
+                  appUrl={app.url}
+                  alt={app.name}
+                  className="w-full h-full object-cover"
+                  fallback={<div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>}
+                />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="font-medium text-sm text-gray-900 truncate">{app.name}</div>
@@ -842,10 +852,13 @@ function FeaturedTab() {
           {suggestions.map((app) => (
             <div key={app._id} className="flex items-center gap-3 p-3 border border-gray-100 rounded-xl bg-white hover:bg-gray-50 transition-colors">
               <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-100 shrink-0">
-                {app.image
-                  ? <img src={app.image} alt={app.name} className="w-full h-full object-cover" />
-                  : <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>
-                }
+                <AppLogo
+                  src={app.image}
+                  appUrl={app.url}
+                  alt={app.name}
+                  className="w-full h-full object-cover"
+                  fallback={<div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>}
+                />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="font-medium text-sm text-gray-900 truncate">{app.name}</div>
@@ -1022,10 +1035,13 @@ function OrderingTab() {
                 <GripVertical className="w-4 h-4 text-gray-300 shrink-0" />
                 <span className="w-6 text-center text-xs font-bold text-gray-400 shrink-0">{i + 1}</span>
                 <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-100 shrink-0">
-                  {app.image
-                    ? <img src={app.image} alt={app.name} className="w-full h-full object-cover" />
-                    : <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>
-                  }
+                  <AppLogo
+                    src={app.image}
+                    appUrl={app.url}
+                    alt={app.name}
+                    className="w-full h-full object-cover"
+                    fallback={<div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">{app.name[0]}</div>}
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="font-medium text-sm text-gray-900 truncate">{app.name}</div>

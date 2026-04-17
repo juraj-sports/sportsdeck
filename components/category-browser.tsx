@@ -26,6 +26,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from "react"
 import Link from "next/link"
 import { SubmitModal } from "@/components/submit-modal"
 import { buildTrackedAppUrl } from "@/lib/utils"
+import { AppLogo } from "@/components/app-logo"
 
 export function CategoryBrowser() {
   const categories = ["Scores & News", "Stats & Analytics", "Fantasy & Predictive", "Sports Betting", "Writers & Publications", "Trivia & Games", "Coaching & Training"]
@@ -126,14 +127,14 @@ export function CategoryBrowser() {
                       {/* Header with icon */}
                       <div className="flex items-start justify-between mb-4">
                         <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center bg-gray-100">
-                          <img
+                          <AppLogo
                             src={app.image}
+                            appUrl={app.url}
                             alt={`${app.name} logo`}
                             className="w-full h-full object-cover rounded-xl"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement
-                              target.src = "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg"
-                            }}
+                            fallback={
+                              <span className="text-sm font-bold text-gray-400">{app.name[0]}</span>
+                            }
                           />
                         </div>
                       </div>
