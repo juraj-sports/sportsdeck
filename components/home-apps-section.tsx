@@ -6,6 +6,7 @@ import { api } from "@/convex/_generated/api";
 import { Search, ExternalLink, Star, ChevronRight, ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { slugify, buildTrackedAppUrl } from "@/lib/utils";
+import { AppLogo } from "@/components/app-logo";
 
 
 
@@ -28,11 +29,13 @@ const AppCard = ({ app }: { app: any }) => (
 
       {/* Logo */}
       <Link href={`/apps/${slugify(app.name)}`} className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center bg-gray-100 shrink-0 mb-3">
-        {app.image ? (
-          <img src={app.image} alt={`${app.name} logo`} className="w-full h-full object-cover" />
-        ) : (
-          <Star className="w-4 h-4 text-gray-400" />
-        )}
+        <AppLogo
+          src={app.image}
+          appUrl={app.url}
+          alt={`${app.name} logo`}
+          className="w-full h-full object-cover"
+          fallback={<Star className="w-4 h-4 text-gray-400" />}
+        />
       </Link>
 
       {/* Name */}

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, MessageCircle } from "lucide-react"
 import Link from "next/link"
+import { AppLogo } from "@/components/app-logo"
 
 interface AppsSectionProps {
   title: string
@@ -65,14 +66,16 @@ export function AppsSection({ title, queryType }: AppsSectionProps) {
 
             {/* App Icon */}
             <div className="flex-shrink-0">
-              <img
+              <AppLogo
                 src={app.image}
+                appUrl={app.url}
                 alt={app.name}
                 className="w-16 h-16 rounded-lg object-cover border border-gray-200"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg"
-                }}
+                fallback={
+                  <div className="w-16 h-16 rounded-lg border border-gray-200 bg-gray-100 flex items-center justify-center text-gray-400 font-bold text-xl">
+                    {app.name[0]}
+                  </div>
+                }
               />
             </div>
 

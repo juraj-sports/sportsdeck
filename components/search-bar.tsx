@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
 import { useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
+import { AppLogo } from "@/components/app-logo"
 
 interface SearchBarProps {
   placeholder?: string
@@ -117,10 +118,16 @@ export function SearchBar({
                   onClick={() => handleSuggestionClick(app._id)}
                   className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center space-x-3 transition-colors"
                 >
-                  <img 
-                    src={app.image} 
+                  <AppLogo
+                    src={app.image}
+                    appUrl={app.url}
                     alt={app.name}
                     className="w-8 h-8 rounded object-cover flex-shrink-0"
+                    fallback={
+                      <div className="w-8 h-8 rounded bg-gray-100 flex-shrink-0 flex items-center justify-center text-xs font-bold text-gray-400">
+                        {app.name[0]}
+                      </div>
+                    }
                   />
                   <div className="flex-1 min-w-0">
                     <div className="font-medium text-gray-900 truncate">{app.name}</div>

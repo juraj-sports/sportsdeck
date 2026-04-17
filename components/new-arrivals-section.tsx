@@ -13,6 +13,7 @@ import Link from "next/link"
 import { useState, useEffect, useCallback } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { slugify, buildTrackedAppUrl } from "@/lib/utils"
+import { AppLogo } from "@/components/app-logo"
 
 export function NewArrivalsSection() {
   const newArrivals = useQuery(api.apps.getVisibleAppsByNewest)
@@ -118,10 +119,12 @@ export function NewArrivalsSection() {
                         {/* Header with icon */}
                         <div className="flex items-start justify-between mb-4">
                           <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-gray-100">
-                            <img 
-                              src={app.image} 
+                            <AppLogo
+                              src={app.image}
+                              appUrl={app.url}
                               alt={`${app.name} logo`}
                               className="w-full h-full object-cover rounded-xl"
+                              fallback={<Star className="w-5 h-5 text-gray-400" />}
                             />
                           </div>
                         </div>

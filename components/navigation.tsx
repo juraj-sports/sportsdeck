@@ -8,6 +8,7 @@ import { useAuthActions } from "@convex-dev/auth/react"
 import { useState, useRef, useEffect } from "react"
 import { AuthModal } from "@/components/auth-modal"
 import { slugify } from "@/lib/utils"
+import { AppLogo } from "@/components/app-logo"
 
 const CATEGORIES = [
   "Popular",
@@ -127,10 +128,13 @@ export function Navigation() {
                 className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-100 shrink-0 flex items-center justify-center">
-                  {app.image
-                    ? <img src={app.image} alt={app.name} className="w-full h-full object-cover" />
-                    : <span className="text-xs text-gray-400">{app.name[0]}</span>
-                  }
+                  <AppLogo
+                    src={app.image}
+                    appUrl={app.url}
+                    alt={app.name}
+                    className="w-full h-full object-cover"
+                    fallback={<span className="text-xs text-gray-400">{app.name[0]}</span>}
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-gray-900 truncate">{app.name}</p>
